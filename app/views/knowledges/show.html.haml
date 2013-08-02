@@ -1,0 +1,62 @@
+%script
+  $('#main-nav li').removeClass('current');
+  $('#main-nav .comments').addClass('current');
+  $('#main-nav>ul li.comments>ul li').removeClass('current');
+  $('#main-nav ul li.comments>ul li').eq(3).addClass('current');
+  $('#breadcrumb li:first-child a').html('Comment');
+  $('#breadcrumb li:last-child a').html('Knowledge');
+.edit_user.show_user.show_knowledge
+  %section.grid_4.invoice_middle
+    .block-border
+      #simple_form.block-content.form
+        %h1 Full Information Of Current Knowledge
+        %fieldset.grey-bg.required 
+          %p#notice= notice
+          .edit_section
+            %p
+              %b Topic:
+              = @knowledge.topic
+            %p
+              %b Product:
+              = @knowledge.product
+            %p
+              %b Software:
+              = @knowledge.software
+            %p
+              %b Description:
+              = @knowledge.description
+            %p
+              %b Videos:
+              = @knowledge.videos
+          .edit_section
+            %p
+              %b Screenshots:
+              = @knowledge.screenshots
+            %p
+              %b Related tickets:
+              = @knowledge.related_tickets
+            %p
+              %b Companies:
+              = @knowledge.companies
+            %p
+              %b Author:
+              = @knowledge.author
+            %p
+              %b Eidts:
+              = @knowledge.eidts
+          .edit_section.last-child  
+            %p
+              %b Related articles:
+              = @knowledge.related_articles
+            %p
+              %b Notes:
+              = @knowledge.notes
+            %p
+              %b Related devices:
+              = @knowledge.related_devices
+            %p
+              %b Date created:
+              = @knowledge.date_created
+            .clear
+        = link_to 'Edit', edit_knowledge_path(@knowledge)
+        = link_to 'Back', knowledges_path

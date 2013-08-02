@@ -1,0 +1,63 @@
+%script
+  $('#main-nav li').removeClass('current');
+  $('#main-nav .comments').addClass('current');
+  $('#main-nav>ul li.comments>ul li').removeClass('current');
+  $('#main-nav ul li.comments>ul li').eq(1).addClass('current');
+  $('#breadcrumb li:first-child a').html('Comment');
+  $('#breadcrumb li:last-child a').html('Inventory');
+.edit_user.show_user
+  %section.grid_4.show_inventory
+    .block-border
+      #simple_form.block-content.form
+        %h1 Full Information Of Current Project
+        %fieldset.grey-bg.required 
+          %p#notice= notice
+          .edit_section
+            %p
+              %b Product:
+              = @inventory.product
+            %p
+              %b Manufacture:
+              = @inventory.manufacture
+            %p
+              %b Manufacture part:
+              = @inventory.manufacture_part
+            %p
+              %b Vendor perferred:
+              = @inventory.vendor_perferred
+            %p
+              %b Vendor other:
+              = @inventory.vendor_other
+          .edit_section
+            %p
+              %b Type:
+              = @inventory.inventory_type
+            %p
+              %b Units:
+              = @inventory.units
+            %p
+              %b Tax:
+              = @inventory.tax
+            %p
+              %b Stock on hand:
+              = @inventory.stock_on_hand
+
+          .edit_section.last-child
+            %p
+              %b Stock location:
+              = @inventory.stock_location
+            %p
+              %b References sales orders:
+              = @inventory.references_sales_orders
+            %p
+              %b References companies who own:
+              = @inventory.references_companies_who_own
+            %p
+              %b References purchase orders:
+              = @inventory.references_purchase_orders
+            %p
+              %b References rmas:
+              = @inventory.references_rmas
+          .clear
+        = link_to 'Edit', edit_inventory_path(@inventory)
+        = link_to 'Back', inventories_path

@@ -1,0 +1,129 @@
+%section.grid_4.edit_invoice
+  .block-border
+    #simple_form.block-content.form
+      %h1 Information Of New Inventory
+      %fieldset.grey-bg.required
+        %p
+          = form_for @invoice do |f|
+            - if @invoice.errors.any?
+              #error_explanation
+                %h2= "#{pluralize(@invoice.errors.count, "error")} prohibited this invoice from being saved:"
+                %ul
+                  - @invoice.errors.full_messages.each do |msg|
+                    %li= msg
+          
+            .section  
+              = f.label :company_name
+              = f.text_field :company_name
+            
+              = f.label :phone
+              = f.telephone_field :phone
+            
+              = f.label :fax
+              = f.telephone_field :fax
+            
+              = f.label :status
+              = f.text_field :status
+            
+              = f.label :site_street_address
+              = f.text_field :site_street_address
+            
+              = f.label :site_city
+              = f.text_field :site_city
+            
+              = f.label :site_zip
+              = f.text_field :site_zip
+            
+              = f.label :site_phone
+              = f.telephone_field :site_phone
+            
+              = f.label :site_business_hours
+              = f.text_field :site_business_hours
+            
+              = f.label :site_round_trip_mileage
+              = f.text_field :site_round_trip_mileage
+            
+              = f.label :site_tolls
+              = f.text_field :site_tolls
+              
+              = f.label :site_map
+              = f.text_field :site_map
+            
+              = f.label :site_state
+              = f.check_box :site_state
+              
+            .section
+              
+              = f.label :open_invoices
+              = f.text_field :open_invoices
+            
+              = f.label :open_credit_invoices
+              = f.text_field :open_credit_invoices
+                          
+              = f.label :billing_contact__fn
+              = f.text_field :billing_contact__fn
+            
+              = f.label :billing_contact_ln
+              = f.text_field :billing_contact_ln
+            
+              = f.label :billing_contact_title
+              = f.text_field :billing_contact_title
+            
+              = f.label :billing_contact_email
+              = f.email_field :billing_contact_email
+            
+              = f.label :billing_contact_phone
+              = f.telephone_field :billing_contact_phone
+            
+              = f.label :billing_info_account_type
+              = f.text_field :billing_info_account_type
+            
+              = f.label :billing_info_approval_level
+              = f.text_field :billing_info_approval_level
+            
+              = f.label :billing_info_approver
+              = f.text_field :billing_info_approver
+            
+              = f.label :agreement_terms
+              = f.text_field :agreement_terms
+            
+              = f.label :agreement_included
+              = f.text_field :agreement_included
+            
+            .section.last-child
+              
+              = f.label :agreement_excluded
+              = f.text_field :agreement_excluded
+            
+              = f.label :invoice_due_date
+              = f.text_field :invoice_due_date
+            
+              = f.label :charges_products
+              = f.text_field :charges_products
+                        
+              = f.label :charges_expenses
+              = f.text_field :charges_expenses
+            
+              = f.label :charges_tax
+              = f.text_field :charges_tax
+            
+              = f.label :invoiced_sales_order
+              = f.text_field :invoiced_sales_order
+            
+              = f.label :invoiced_ticket_number
+              = f.text_field :invoiced_ticket_number
+            
+              = f.label :invoiced_purchase_order
+              = f.text_field :invoiced_purchase_order
+            
+              = f.label :commission_product
+              = f.text_field :commission_product
+            
+              = f.label :commission_service
+              = f.text_field :commission_service
+              
+              = f.label :charges_time
+              = f.datetime_select :charges_time
+            .clear
+            = f.submit :class =>"submit-button"
+            = link_to 'Back', invoices_path

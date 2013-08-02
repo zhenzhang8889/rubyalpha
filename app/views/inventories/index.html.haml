@@ -1,0 +1,93 @@
+%script
+  $('#main-nav li').removeClass('current');
+  $('#main-nav .comments').addClass('current');
+  $('#main-nav>ul li.comments>ul li').removeClass('current');
+  $('#main-nav ul li.comments>ul li').eq(1).addClass('current');
+  $('#breadcrumb li:first-child a').html('Comment');
+  $('#breadcrumb li:last-child a').html('Inventory');
+%section.grid_12.list_inventory
+  .block-border
+    %form#table_form.block-content.form{:action => "", :method => "post"}
+      %h1
+        Inventory
+        %a.with-tip{:href => "inventories/new", :title => "Please click to add new user"}
+          %img{:height => "16", :src => "/images/icons/fugue/plus-circle-blue.png", :width => "16"} new add
+      .block-controls
+        %ul.controls-buttons
+          %li
+            %a{:href => "#", :title => "Previous"}
+              %img{:height => "16", :src => "/images/icons/fugue/navigation-180.png", :width => "16"} Prev
+          %li
+            %a.current{:href => "#", :title => "Page 1"}
+              %b 1
+          %li
+            %a{:href => "#", :title => "Page 2"}
+              %b 2
+          %li
+            %a{:href => "#", :title => "Page 3"}
+              %b 3
+          %li
+            %a{:href => "#", :title => "Page 4"}
+              %b 4
+          %li
+            %a{:href => "#", :title => "Page 5"}
+              %b 5
+          %li
+            %a{:href => "#", :title => "Next"}
+              Next
+              %img{:height => "16", :src => "/images/icons/fugue/navigation.png", :width => "16"}/
+          %li.sep
+          %li
+            %a{:href => "#"}
+              %img{:height => "16", :src => "/images/icons/fugue/arrow-circle.png", :width => "16"}/
+      .no-margin
+        %table.table{:cellspacing => "0", :width => "100%"}
+          %thead
+            %tr
+              %th.black-cell
+                %span.loading
+              %th{:scope => "col"}
+                %span.column-sort
+                  %a.sort-up.active{:href => "#", :title => "Sort up"}
+                  %a.sort-down{:href => "#", :title => "Sort down"}
+                Product
+              %th{:scope => "col"}
+                %span.column-sort
+                  %a.sort-up{:href => "#", :title => "Sort up"}
+                  %a.sort-down{:href => "#", :title => "Sort down"}
+                Manufacture
+                  
+              %th{:scope => "col"} Type
+              %th{:scope => "col"} Units
+              %th{:scope => "col"} Vendor
+              %th{:scope => "col"} Stock
+              %th{:scope => "col"}
+                %span.column-sort
+                  %a.sort-up{:href => "#", :title => "Sort up"}
+                  %a.sort-down{:href => "#", :title => "Sort down"}
+                References
+              %th.table-actions{:scope => "col"} Actions
+          %tbody
+            - @inventories.each do |inventory|
+              %tr
+                %th.table-check-cell{:scope => "row"}
+                  %input#table-selected-1{:name => "selected[]", :type => "checkbox", :value => "1"}/
+                %td= inventory.product
+                %td= inventory.manufacture
+                %td= inventory.inventory_type
+                %td= inventory.units
+                %td= inventory.vendor_perferred
+                %td= inventory.stock_location
+                %td= inventory.references_companies_who_own
+                %td.table-actions
+                  = link_to edit_inventory_path(inventory), {:title =>"Edit", :class =>"with-tip"} do
+                    %img{:height => "16", :src => "/images/icons/fugue/pencil.png", :width => "16"}
+                  = link_to inventory, method: :delete, data: { confirm: 'Are you sure?'}, :title =>"Delete", :class =>"with-tip" do
+                    %img{:height => "16", :src => "/images/icons/fugue/cross-circle.png", :width => "16"}
+                  = link_to inventory, {:title =>"More Information", :class =>"with-tip"} do
+                    %img{:height => "16", :src => "/images/icons/fugue/navigation.png", :width => "16"}
+    %ul.message.no-margin
+      %li
+        = @inventories.count
+        inventory found
+

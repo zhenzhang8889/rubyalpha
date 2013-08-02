@@ -1,0 +1,13 @@
+<div class="add_user edit_user">
+<script>
+$(document).ready(function() {	
+	$('#main-nav li').removeClass('current');
+	$('#main-nav .users').addClass('current');
+	$('#main-nav>ul li.users>ul li').removeClass('current');
+	$('#main-nav ul li.users>ul li').eq(2).addClass('current');
+	$('#breadcrumb li:first-child a').html('Companies');
+	$('#breadcrumb li:last-child a').html('Update Company');
+  });
+</script>
+<%= render 'form' %>
+</div>

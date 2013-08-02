@@ -1,0 +1,90 @@
+<script>
+$(document).ready(function() {	
+	$('#main-nav li').removeClass('current');
+	$('#main-nav .users').addClass('current');
+	$('#main-nav>ul li.users>ul li').removeClass('current');
+	$('#main-nav ul li.users>ul li:first-child').addClass('current');
+	$('#breadcrumb li:first-child a').html('Users');
+	$('#breadcrumb li:last-child a').html('List');
+  });
+</script>
+<section class="grid_12" style="margin-top: 50px; margin-left: 35px ">
+      <div class="block-border"><form class="block-content form" name="table_form" id="table_form" method="post" action="">
+        <h1>
+          Listing Users
+          <a href="users/new" title="Please click to add new user" class="with-tip"><img src="assets/icons/fugue/plus-circle-blue.png" width="16" height="16"> new add</a>
+        </h1>
+        
+        <div class="block-controls">
+          
+          <ul class="controls-buttons">
+            <li><a href="#" title="Previous"><img src="assets/icons/fugue/navigation-180.png" width="16" height="16"> Prev</a></li>
+            <li><a href="#" title="Page 1" class="current"><b>1</b></a></li>
+            <li><a href="#" title="Page 2"><b>2</b></a></li>
+            <li><a href="#" title="Page 3"><b>3</b></a></li>
+            <li><a href="#" title="Page 4"><b>4</b></a></li>
+            <li><a href="#" title="Page 5"><b>5</b></a></li>
+            <li><a href="#" title="Next">Next <img src="assets/icons/fugue/navigation.png" width="16" height="16"></a></li>
+            <li class="sep"></li>
+            <li><a href="#"><img src="assets/icons/fugue/arrow-circle.png" width="16" height="16"></a></li>
+          </ul>
+          
+        </div>
+        
+        <div class="with-head no-margin">
+          
+          <div class="head">
+            <div class="black-cell">Sort by</div>
+            <div>
+              <span class="column-sort">
+                <a href="#" title="Sort up" class="sort-up active"></a>
+                <a href="#" title="Sort down" class="sort-down"></a>
+              </span>
+              Name
+            </div>
+            <div>
+              <span class="column-sort">
+                <a href="#" title="Sort up" class="sort-up"></a>
+                <a href="#" title="Sort down" class="sort-down"></a>
+              </span>
+              Date
+            </div>
+          </div>
+          
+          <ul class="grid dark-grey-gradient">
+            <% @users.each do |user| %>
+            <li>
+              <div class="grid-picto user">
+                <small><%= user.title %></small>
+                <p class="grid-name"><%= user.firstName %>&nbsp;<%= user.lastName %></p>
+                <p class="grid-details">Age: <b><%= user.phone %></b><br>
+                Gender: <b>
+                	<% if (user.email_private) %>
+                		Female
+                	<% else %>
+                		Male
+                	<% end %>
+                	</b><br>
+                Country: <b><%= user.site_city %></b></p>
+              </div>
+              <ul class="grid-actions">
+                <li><%= link_to edit_user_path(user), {:title =>"Edit", :class =>"with-tip"} do %>
+                  	<img src="assets/icons/fugue/pencil.png" width="16" height="16">
+                  	<% end %>	
+                </li>
+                <li><%= link_to user, method: :delete, data: { confirm: 'Are you sure?'}, :title =>"Delete", :class =>"with-tip" do %>
+                	<img src="assets/icons/fugue/cross-circle.png" width="16" height="16">
+                	<% end %>
+                </li>
+                <li><%= link_to user, {:title =>"More Information", :class =>"with-tip"} do %>
+                	<img src="assets/icons/fugue/navigation.png" width="16" height="16">
+                	<% end %>
+                </li>
+              </ul>
+            </li>
+	        <% end %>    
+                
+          </ul>
+        </div>
+        </form></div>
+    </section>	

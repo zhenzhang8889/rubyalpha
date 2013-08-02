@@ -1,0 +1,15 @@
+<div class="add_user">
+	<script>
+$(document).ready(function() {	
+	$('#main-nav li').removeClass('current');
+	$('#main-nav .users').addClass('current');
+	$('#main-nav>ul li.users>ul li').removeClass('current');
+	$('#main-nav ul li.users>ul li').eq(3).addClass('current');
+	$('#breadcrumb li:first-child a').html('Companies');
+	$('#breadcrumb li:last-child a').html('Add Company');
+	$('.first-label').css('margin-bottom','20px');
+	$('.first-input').css('height','30px').css('margin-top','18px').css('width','95%');
+  });
+</script>	
+<%= render 'form' %>
+</div>

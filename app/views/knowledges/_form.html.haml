@@ -1,0 +1,60 @@
+%section.grid_4.edit_knowledge
+  .block-border
+    #simple_form.block-content.form
+      %h1 Information Of New Knowledge
+      %fieldset.grey-bg.required
+        %p
+          = form_for @knowledge do |f|
+            - if @knowledge.errors.any?
+              #error_explanation
+                %h2= "#{pluralize(@knowledge.errors.count, "error")} prohibited this knowledge from being saved:"
+                %ul
+                  - @knowledge.errors.full_messages.each do |msg|
+                    %li= msg
+            .section  
+              = f.label :topic
+              = f.text_field :topic
+          
+              = f.label :product
+              = f.text_field :product
+          
+              = f.label :software
+              = f.text_field :software
+          
+              = f.label :description
+              = f.text_field :description
+          
+              = f.label :videos
+              = f.text_field :videos
+            .section
+              = f.label :screenshots
+              = f.text_field :screenshots
+          
+              = f.label :related_tickets
+              = f.text_field :related_tickets
+          
+              = f.label :companies
+              = f.text_field :companies
+          
+              = f.label :author
+              = f.text_field :author
+          
+              = f.label :eidts
+              = f.text_field :eidts
+            .section.last-child
+              = f.label :related_articles
+              = f.text_field :related_articles
+          
+              = f.label :related_devices
+              = f.text_field :related_devices
+          
+              = f.label :date_created
+              = f.text_field :date_created
+             
+              = f.label :notes
+              = f.text_area :notes
+              .clear
+            = f.submit :class =>"submit-button"
+            = link_to 'Back', knowledges_path
+            
+            

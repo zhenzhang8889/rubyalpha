@@ -1,0 +1,98 @@
+%script
+  $('#main-nav li').removeClass('current');
+  $('#main-nav .comments').addClass('current');
+  $('#main-nav>ul li.comments>ul li').removeClass('current');
+  $('#main-nav ul li.comments>ul li').eq(3).addClass('current');
+  $('#breadcrumb li:first-child a').html('Comment');
+  $('#breadcrumb li:last-child a').html('knowledge');
+%section.grid_12.list_knowledge
+  .block-border
+    %form#table_form.block-content.form{:action => "", :method => "post"}
+      %h1
+        knowledge
+        %a.with-tip{:href => "knowledges/new", :title => "Please click to add new user"}
+          %img{:height => "16", :src => "/images/icons/fugue/plus-circle-blue.png", :width => "16"} new add
+      .block-controls
+        %ul.controls-buttons
+          %li
+            %a{:href => "#", :title => "Previous"}
+              %img{:height => "16", :src => "/images/icons/fugue/navigation-180.png", :width => "16"} Prev
+          %li
+            %a.current{:href => "#", :title => "Page 1"}
+              %b 1
+          %li
+            %a{:href => "#", :title => "Page 2"}
+              %b 2
+          %li
+            %a{:href => "#", :title => "Page 3"}
+              %b 3
+          %li
+            %a{:href => "#", :title => "Page 4"}
+              %b 4
+          %li
+            %a{:href => "#", :title => "Page 5"}
+              %b 5
+          %li
+            %a{:href => "#", :title => "Next"}
+              Next
+              %img{:height => "16", :src => "/images/icons/fugue/navigation.png", :width => "16"}/
+          %li.sep
+          %li
+            %a{:href => "#"}
+              %img{:height => "16", :src => "/images/icons/fugue/arrow-circle.png", :width => "16"}/
+      .no-margin
+        %table.table{:cellspacing => "0", :width => "100%"}
+          %thead
+            %tr
+              %th.black-cell
+                %span.loading
+              %th{:scope => "col"}
+                %span.column-sort
+                  %a.sort-up.active{:href => "#", :title => "Sort up"}
+                  %a.sort-down{:href => "#", :title => "Sort down"}
+                Topic
+              %th{:scope => "col"}
+                %span.column-sort
+                  %a.sort-up{:href => "#", :title => "Sort up"}
+                  %a.sort-down{:href => "#", :title => "Sort down"}
+                Product
+              %th{:scope => "col"}
+                %span.column-sort
+                  %a.sort-up{:href => "#", :title => "Sort up"}
+                  %a.sort-down{:href => "#", :title => "Sort down"}
+                Software
+              %th{:scope => "col"}
+                %span.column-sort
+                  %a.sort-up{:href => "#", :title => "Sort up"}
+                  %a.sort-down{:href => "#", :title => "Sort down"}
+                Company
+              
+              %th{:scope => "col"} Author
+              %th{:scope => "col"} Article
+              %th{:scope => "col"} Devices
+              %th{:scope => "col"} Date created
+              %th.table-actions{:scope => "col"} Actions
+          %tbody
+            - @knowledges.each do |knowledge|
+              %tr
+                %th.table-check-cell{:scope => "row"}
+                  %input#table-selected-1{:name => "selected[]", :type => "checkbox", :value => "1"}/
+                %td= knowledge.topic
+                %td= knowledge.product
+                %td= knowledge.software
+                %td= knowledge.companies
+                %td= knowledge.author
+                %td= knowledge.related_articles
+                %td= knowledge.related_devices
+                %td= knowledge.created_at.strftime("%d/%m/%y %H:%M")
+                %td.table-actions
+                  = link_to edit_knowledge_path(knowledge), {:title =>"Edit", :class =>"with-tip"} do
+                    %img{:height => "16", :src => "/images/icons/fugue/pencil.png", :width => "16"}
+                  = link_to knowledge, method: :delete, data: { confirm: 'Are you sure?'}, :title =>"Delete", :class =>"with-tip" do
+                    %img{:height => "16", :src => "/images/icons/fugue/cross-circle.png", :width => "16"}
+                  = link_to knowledge, {:title =>"More Information", :class =>"with-tip"} do
+                    %img{:height => "16", :src => "/images/icons/fugue/navigation.png", :width => "16"}
+    %ul.message.no-margin
+      %li
+        = @knowledges.count
+        knowledge found

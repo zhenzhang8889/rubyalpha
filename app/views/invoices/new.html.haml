@@ -1,0 +1,9 @@
+.add_user  
+  = render 'form'
+%script
+  $('#main-nav li').removeClass('current');
+  $('#main-nav .comments').addClass('current');
+  $('#main-nav>ul li.comments>ul li').removeClass('current');
+  $('#main-nav ul li.comments>ul li').eq(2).addClass('current');
+  $('#breadcrumb li:first-child a').html('Comment');
+  $('#breadcrumb li:last-child a').html('Invoice');

@@ -1,0 +1,64 @@
+%section.grid_4
+  .block-border
+    #simple_form.block-content.form
+      %h1 Information Of New Inventory
+      %fieldset.grey-bg.required
+        %p
+          = form_for @inventory do |f|
+            - if @inventory.errors.any?
+              #error_explanation
+                %h2= "#{pluralize(@inventory.errors.count, "error")} prohibited this inventory from being saved:"
+                %ul
+                  - @inventory.errors.full_messages.each do |msg|
+                    %li= msg
+            .section
+              = f.label :product
+              = f.text_field :product
+            
+              = f.label :manufacture
+              = f.text_field :manufacture
+            
+              = f.label :manufacture_part
+              = f.text_field :manufacture_part
+            
+              = f.label :vendor_perferred
+              = f.text_field :vendor_perferred
+            
+              = f.label :vendor_other
+              = f.text_field :vendor_other
+           
+            .section
+             
+              = f.label :type
+              = f.text_field :inventory_type
+            
+              = f.label :units
+              = f.text_field :units
+            
+              = f.label :tax
+              = f.text_field :tax
+            
+              = f.label :stock_on_hand
+              = f.text_field :stock_on_hand
+            
+              = f.label :stock_location
+              = f.text_field :stock_location
+           
+            .section.last-child
+             
+              = f.label :references_sales_orders
+              = f.text_field :references_sales_orders
+            
+              = f.label :references_purchase_orders
+              = f.text_field :references_purchase_orders
+            
+              = f.label :references_rmas
+              = f.text_field :references_rmas
+              
+              = f.label :references_companies_who_own
+              = f.text_field :references_companies_who_own
+
+            .clear
+            = f.submit :class =>"submit-button"
+            = link_to 'Back', inventories_path
+            
